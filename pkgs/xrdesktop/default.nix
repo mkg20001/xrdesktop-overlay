@@ -2,7 +2,7 @@
 
 stdenv.mkDerivation rec {
   pname = "xrdesktop";
-  version = import ./version.nix;
+  version = import ../version.nix;
 
   src = fetchFromGitLab {
     domain = "gitlab.freedesktop.org";

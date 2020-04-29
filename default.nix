@@ -3,7 +3,11 @@
 with lib;
 {
   nixpkgs.overlays = [
-    (import ./overlay.nix)
+    (import ./pkgs/overlay.nix (import ./pkgs/hashes.nix))
+  ];
+
+  imports = [
+    ./modules/xrdesktop.nix
   ];
 
   services.xrdesktop.enable = true;

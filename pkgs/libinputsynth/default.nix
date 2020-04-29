@@ -2,7 +2,7 @@
 
 stdenv.mkDerivation rec {
   pname = "libinputsynth";
-  version = import ./version.nix;
+  version = import ../version.nix;
 
   src = fetchFromGitLab {
     domain = "gitlab.freedesktop.org";
@@ -13,7 +13,7 @@ stdenv.mkDerivation rec {
   };
 
   postPatch = ''
-    substituteInPlace meson.build --replace "'xdo', dirs : ['/usr/lib']" "'xdo', dirs : ['${xdotool}/lib']"
+    substituteInPlace meson.build --replace "'xdo', dirs : ['/usr/lib']" "'xdo'"
   '';
 
   nativeBuildInputs = [ pkgconfig meson ninja ];

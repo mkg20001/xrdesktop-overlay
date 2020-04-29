@@ -1,4 +1,4 @@
-self: super: {
+hashes: self: super: {
   openvr = super.callPackage ./openvr {};
   openvrSamples = super.callPackage ./openvr-samples {};
 
@@ -22,13 +22,9 @@ self: super: {
       version = "${gnome-super.gnome-shell.version}-xrdesktop-${import ./version.nix}";
 
       src = super.fetchgit { # fetchFromGitLab doesn't accept fetchSubmodules?
-        url  = "https://gitlab.freedesktop.org/xrdesktop/gnome-shell";
+        url = "https://gitlab.freedesktop.org/xrdesktop/gnome-shell";
         rev = version;
-        sha256 = {
-          "3.28.4-xrdesktop-0.14.0" = "0000000000000000000000000000000000000000000000000000000000000000";
-          "3.34.4-xrdesktop-0.14.0" = "0snspbn0lijxc2pnwhb7bjrs5kdaybv2gv31f4k3gm8fcl50q6ns";
-          "3.36.0-xrdesktop-0.14.0" = "0000000000000000000000000000000000000000000000000000000000000000";
-        }.${version};
+        sha256 = hashes.patched;
         fetchSubmodules = true;
       };
 
